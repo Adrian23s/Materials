@@ -1,0 +1,52 @@
+﻿@model Materials.Models.BuildingInput
+@{
+    ViewBag.Title = "Buildings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Buildings</h2>
+
+@Html.BeginForm("Index", "Building", FormMethod.Post)
+<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Building Name</label>
+    <input type="text" class="form-control" id="BuildingID" name="BuildingID">
+
+</div>
+
+
+<input type="submit" id="BuildingID" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Building Name</label>
+        @*<input type="email" class="form-control" id="BuildingName">*@
+
+@*id = @Html.TextBoxFor(x=>x.Building)*@
+@*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+@*</div>
+
+        <input type="submit" class="btn btn-primary" name="id" onclick="location.href = '@Url.Action("CreateBuilding","Building")'">Add</input>
+
+    </form>*@

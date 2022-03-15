@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MaterialsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MaterialsEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SPCreateBuilding">
+      <Parameter Name="Building" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SPCreateCustomer">
+      <Parameter Name="Customer" Mode="In" Type="String" />
+      <Parameter Name="Prefix" Mode="In" Type="String" />
+      <Parameter Name="FKBuilding" Mode="In" Type="Int32" />
+      <Parameter Name="Available" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SPCreatePartNumber">
+      <Parameter Name="PartNumber" Mode="In" Type="String" />
+      <Parameter Name="FKCustomer" Mode="In" Type="Int32" />
+      <Parameter Name="Available" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="SPGetBuildings" ReturnType="Collection(MaterialsModel.SPGetBuildings_Result)" />
+    <FunctionImport Name="SPGetPartNumbers" ReturnType="Collection(MaterialsModel.SPGetPartNumbers_Result)">
+      <Parameter Name="PartNumber" Mode="In" Type="String" />
+      <Parameter Name="Customer" Mode="In" Type="String" />
+      <Parameter Name="Available" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SPGetBuildings_Result">
+    <Property Type="Int32" Name="PKBuilding" Nullable="false" />
+    <Property Type="String" Name="Building" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SPGetPartNumbers_Result">
+    <Property Type="String" Name="PartNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Customer" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Building" Nullable="true" MaxLength="255" />
+  </ComplexType>
+</Schema>

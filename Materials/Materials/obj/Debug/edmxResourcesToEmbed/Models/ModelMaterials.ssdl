@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MaterialsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SPCreateBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Building" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SPCreateCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Customer" Type="varchar" Mode="In" />
+    <Parameter Name="Prefix" Type="varchar" Mode="In" />
+    <Parameter Name="FKBuilding" Type="int" Mode="In" />
+    <Parameter Name="Available" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SPCreatePartNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+    <Parameter Name="FKCustomer" Type="int" Mode="In" />
+    <Parameter Name="Available" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SPGetBuildings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SPGetPartNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Customer" Type="varchar" Mode="In" />
+    <Parameter Name="Available" Type="bit" Mode="In" />
+  </Function>
+  <EntityContainer Name="MaterialsModelStoreContainer" />
+</Schema>

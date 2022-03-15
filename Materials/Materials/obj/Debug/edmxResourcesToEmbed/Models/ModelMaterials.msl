@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MaterialsModelStoreContainer" CdmEntityContainer="MaterialsEntities">
+    <FunctionImportMapping FunctionImportName="SPCreateBuilding" FunctionName="MaterialsModel.Store.SPCreateBuilding" />
+    <FunctionImportMapping FunctionImportName="SPCreateCustomer" FunctionName="MaterialsModel.Store.SPCreateCustomer" />
+    <FunctionImportMapping FunctionImportName="SPCreatePartNumber" FunctionName="MaterialsModel.Store.SPCreatePartNumber" />
+    <FunctionImportMapping FunctionImportName="SPGetBuildings" FunctionName="MaterialsModel.Store.SPGetBuildings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MaterialsModel.SPGetBuildings_Result">
+          <ScalarProperty Name="PKBuilding" ColumnName="PKBuilding" />
+          <ScalarProperty Name="Building" ColumnName="Building" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetPartNumbers" FunctionName="MaterialsModel.Store.SPGetPartNumbers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MaterialsModel.SPGetPartNumbers_Result">
+          <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Building" ColumnName="Building" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

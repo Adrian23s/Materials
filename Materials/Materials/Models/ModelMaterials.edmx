@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MaterialsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="SPCreateBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Building" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SPCreateCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Customer" Type="varchar" Mode="In" />
+          <Parameter Name="Prefix" Type="varchar" Mode="In" />
+          <Parameter Name="FKBuilding" Type="int" Mode="In" />
+          <Parameter Name="Available" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SPCreatePartNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+          <Parameter Name="FKCustomer" Type="int" Mode="In" />
+          <Parameter Name="Available" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SPGetBuildings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPGetPartNumbers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PartNumber" Type="varchar" Mode="In" />
+          <Parameter Name="Customer" Type="varchar" Mode="In" />
+          <Parameter Name="Available" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="MaterialsModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaterialsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MaterialsEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SPCreateBuilding">
+            <Parameter Name="Building" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPCreateCustomer">
+            <Parameter Name="Customer" Mode="In" Type="String" />
+            <Parameter Name="Prefix" Mode="In" Type="String" />
+            <Parameter Name="FKBuilding" Mode="In" Type="Int32" />
+            <Parameter Name="Available" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SPCreatePartNumber">
+            <Parameter Name="PartNumber" Mode="In" Type="String" />
+            <Parameter Name="FKCustomer" Mode="In" Type="Int32" />
+            <Parameter Name="Available" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetBuildings" ReturnType="Collection(MaterialsModel.SPGetBuildings_Result)" />
+          <FunctionImport Name="SPGetPartNumbers" ReturnType="Collection(MaterialsModel.SPGetPartNumbers_Result)">
+            <Parameter Name="PartNumber" Mode="In" Type="String" />
+            <Parameter Name="Customer" Mode="In" Type="String" />
+            <Parameter Name="Available" Mode="In" Type="Boolean" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SPGetBuildings_Result">
+          <Property Type="Int32" Name="PKBuilding" Nullable="false" />
+          <Property Type="String" Name="Building" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SPGetPartNumbers_Result">
+          <Property Type="String" Name="PartNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Customer" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Building" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaterialsModelStoreContainer" CdmEntityContainer="MaterialsEntities" >
+          <FunctionImportMapping FunctionImportName="SPCreateBuilding" FunctionName="MaterialsModel.Store.SPCreateBuilding" />
+          <FunctionImportMapping FunctionImportName="SPCreateCustomer" FunctionName="MaterialsModel.Store.SPCreateCustomer" />
+          <FunctionImportMapping FunctionImportName="SPCreatePartNumber" FunctionName="MaterialsModel.Store.SPCreatePartNumber" />
+          <FunctionImportMapping FunctionImportName="SPGetBuildings" FunctionName="MaterialsModel.Store.SPGetBuildings">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaterialsModel.SPGetBuildings_Result">
+                <ScalarProperty Name="PKBuilding" ColumnName="PKBuilding" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetPartNumbers" FunctionName="MaterialsModel.Store.SPGetPartNumbers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MaterialsModel.SPGetPartNumbers_Result">
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

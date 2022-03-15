@@ -26,5 +26,21 @@ namespace Materials.Controllers
 
             return View();
         }
+
+        public ActionResult Buildings()
+        {
+            return View();
+        }
+
+        public ActionResult Customers()
+        {
+            return View();
+        }
+
+        public ActionResult PartNumbers()
+        {
+            return View();
+        }
+
     }
 }
